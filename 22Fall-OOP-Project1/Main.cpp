@@ -2,6 +2,7 @@
 #include "LinkList.h"
 #include <cstring> 
 #include <conio.h>
+#include "express.h"
 
 int Pos(char ch, const char *str)			// 返回指定字符ch在字符串str中的下标。不存在时返回-1
 {
