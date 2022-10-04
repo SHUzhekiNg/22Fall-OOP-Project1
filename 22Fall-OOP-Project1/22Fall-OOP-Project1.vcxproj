@@ -22,12 +22,14 @@
     <ClCompile Include="AddressBook.cpp" />
     <ClCompile Include="Banking.cpp" />
     <ClCompile Include="BankingTest.cpp" />
+    <ClCompile Include="check_repository.cpp" />
     <ClCompile Include="express.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Test.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Banking.h" />
+    <ClInclude Include="check_repository.h" />
     <ClInclude Include="express.h" />
     <ClInclude Include="LinkList.h" />
   </ItemGroup>
