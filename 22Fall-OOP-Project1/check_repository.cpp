@@ -9,7 +9,6 @@ void CheckSelectedRepository(LinkList<LinkList<Express>>* current, int id_store)
 	}
 	for (Node<Express>* com = p->data.head; com != nullptr; com = com->next)
 		cout << com->data << (p->data).cnt[com->data.id_things] << endl;
-
 }
 
 void CheckAllRepository(LinkList<LinkList<Express>>* first)
