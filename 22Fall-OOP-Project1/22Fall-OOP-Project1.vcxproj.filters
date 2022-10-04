@@ -33,7 +33,11 @@
     <ClCompile Include="express.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+<<<<<<< Updated upstream
     <ClCompile Include="check_repository.cpp">
+=======
+    <ClCompile Include="expressTest.cpp">
+>>>>>>> Stashed changes
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
