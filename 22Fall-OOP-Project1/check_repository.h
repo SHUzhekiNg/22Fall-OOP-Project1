@@ -8,4 +8,4 @@ template <typename T> class LinkList;
 class Express;
 void CheckSelectedRepository(LinkList<LinkList<Express>>* current,int id_store);
 void CheckAllRepository(LinkList<LinkList<Express>>* first);
-#endif // CHECK_REPERTORY_H_
+#endif // CHECK_REPOSITORY_H_
