@@ -16,7 +16,7 @@ public:
 	Node() : next(NULL) {}										// 默认的构造函数，故意不初始化data以保持data的“原生态”
 	Node(const T& t) : data(t), next(NULL) {}					// 转换构造函数
 	Node(const Node<T>& node) : data(node.data), next(NULL) {}	// 拷贝构造函数
-	T Getdata();
+	T Getdata();												//获取data域
 	Node<T>& operator=(const Node<T>& node)					// 重载赋值运算符函数
 	{
 		data = node.data;				// 结点间赋值时，仅改变数据域，不改变链接方式
@@ -67,6 +67,7 @@ public:
 	template <typename TYPE> void Sort(const TYPE &x, bool ascending=true);	// 根据TYPE类型排序（升序或降序）
 	void Reverse();								// 链表结点倒置
 
+	int Getcnt(int i);							//获取第i个种类的商品个数
 private:
 	Node<T> *head, *cur_node;					// 链表首结点地址（指针）、当前结点地址（指针）
 	int num;									// 用于记录链表中结点的个数
@@ -446,5 +447,11 @@ void LinkList<T>::Reverse()						// 链表结点倒置
 		p->next = head;
 		head = p;								// 将卸下的结点插入新链表的首部
 	}											// 注意：由于只修改了各结点的next的值，cur_node不变
+}
+
+template <typename T>
+int LinkList<T>::Getcnt(int i)
+{
+	return this->cnt[i];
 }
 #endif
