@@ -24,6 +24,7 @@
     <ClCompile Include="BankingTest.cpp" />
     <ClCompile Include="check_repository.cpp" />
     <ClCompile Include="express.cpp" />
+    <ClCompile Include="expressTest.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Test.cpp" />
   </ItemGroup>
