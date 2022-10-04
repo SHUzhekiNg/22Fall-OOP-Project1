@@ -1,6 +1,7 @@
 // expressTest.cpp
 #include "LinkList.h"
 #include "express.h"
+#include "check_repository.h"
 #include <conio.h>
 #include <string>
 
@@ -80,18 +81,19 @@ void expressTest()
 			cout << "请输入所要盘点的仓库: (输入0以查询所有仓库)";
 			cin >> numW;
 			cin.getline(str, 80);
-			cout << "请输入所要查询货物的的ID或名称:";
-			cin >> s;
-			cin.getline(str, 80);					// 处理换行字符
-			WarehouseList.GoTop();
-			WarehouseList.Skip(numW - 1);
-
-			if (s[0] >= '0' && s[0] <= '9')
+			if (numW == 0)
 			{
-				numC = stoi(s);
-				Ex1.SearchLocal((WarehouseList.CurNode())->Getdata(), numC);
+				CheckAllRepository(&WarehouseList);
 			}
-			else Ex1.SearchLocal((WarehouseList.CurNode())->Getdata(), s);
+			else
+			{
+				cout << "请输入所要查询货物的的ID:";
+				cin >> numC;
+				cin.getline(str, 80);					// 处理换行字符
+				CheckSelectedRepository(&WarehouseList, numC);
+			}
+
+			break;
 		}
 	}
 

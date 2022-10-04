@@ -15,7 +15,7 @@ istream& operator>>(istream& in, Express& a)
 /*
 	全局查找功能，调用单个仓库查找
 */
-void Express::SearchGlobal(LinkList<LinkList<Express>> link, int id_things,int storageid)
+void Express::SearchGlobal(LinkList<LinkList<Express>> &link, int id_things,int storageid)
 {
 	if (storageid == 0)
 	{
@@ -44,7 +44,7 @@ void Express::SearchGlobal(LinkList<LinkList<Express>> link, int id_things,int s
 /*
 	单个仓库查找功能
 */
-void Express::SearchGlobal(LinkList<LinkList<Express>> link, string name,int storageid)
+void Express::SearchGlobal(LinkList<LinkList<Express>> &link, string name,int storageid)
 {
 	int allcount = 0;
 	int storagecnt = link.NumNodes();
@@ -70,7 +70,7 @@ void Express::SearchGlobal(LinkList<LinkList<Express>> link, string name,int sto
 		allcount += SearchLocal(q, name);
 	}
 }
-int Express::SearchLocal(LinkList<Express> link, int id_things)
+int Express::SearchLocal(LinkList<Express> &link, int id_things)
 {
 	int goodscnt = link.NumNodes();
 	for (int i = 0; i < goodscnt; i++)
@@ -87,7 +87,7 @@ int Express::SearchLocal(LinkList<Express> link, int id_things)
 }
 
 
-int Express::SearchLocal(LinkList<Express> link, string name)
+int Express::SearchLocal(LinkList<Express> &link, string name)
 {
 	int goodscnt = link.NumNodes();
 	for (int i = 0; i < goodscnt; i++)
