@@ -85,7 +85,6 @@ void expressTest()
 			cin.getline(str, 80);					// ´¦Àí»»ÐÐ×Ö·û
 			WarehouseList.GoTop();
 			WarehouseList.Skip(numW - 1);
-			Ex1.SearchLocal((WarehouseList.CurNode())->Getdata(), numC);
 
 			if (s[0] >= '0' && s[0] <= '9')
 			{
