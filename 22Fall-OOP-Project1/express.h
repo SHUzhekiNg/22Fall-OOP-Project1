@@ -17,7 +17,7 @@ private:
 	int id_things;							// ÷÷¿‡±‡∫≈
 	string name;
 };
-/*
+
 void Express::Search(LinkList<LinkList<Express>> link, int id_things)
 {
 	int allcount = 0;
@@ -30,7 +30,7 @@ void Express::Search(LinkList<LinkList<Express>> link, int id_things)
 	for (int i = 0; i < storagecnt; i++)
 	{
 		Node<LinkList<Express>>* p = link.Go(i);
-		LinkList<Express> q = p->Getdata;
+		LinkList<Express> q = p->Getdata();
 		Search(q, id_things);
 	}
 }
@@ -41,11 +41,11 @@ void Express::Search(LinkList<Express> link, int id_things)
 	for (int i = 0; i < goodscnt; i++)
 	{
 		Node<Express>* p = link.Go(i);
-		Express q = p->Getdata;
+		Express q = p->Getdata();
 		if (q.id_things == id_things)
 		{
 
 		}
 	}
 }
-*/
+
