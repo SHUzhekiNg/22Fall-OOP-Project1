@@ -7,12 +7,15 @@
 #include <iostream>
 #include <fstream>
 #include <cstdlib>
+#include"express.h"
+#include"check_repository.h"
 using namespace std;
 template <typename T> class LinkList;	// 最外层：链表类（模板）提前声明
 
 template <typename T> class Node		// 中间层：结点类（模板）
 {
 public:
+
 	Node() : next(NULL) {}										// 默认的构造函数，故意不初始化data以保持data的“原生态”
 	Node(const T& t) : data(t), next(NULL) {}					// 转换构造函数
 	Node(const Node<T>& node) : data(node.data), next(NULL) {}	// 拷贝构造函数
@@ -24,6 +27,8 @@ public:
 	}
 	friend class LinkList<T>;			// 声明友类，以使LinkList<T>类的成员函数访问结点类的私有成员data和next
 private:
+	friend void CheckSelectedRepository(LinkList<LinkList<Express>>* current, int id_store);
+	friend void CheckAllRepository(LinkList<LinkList<Express>>* first);
 	T data;								// 最里层：数据域（形式数据类型）
 	Node<T>* next;						// 指针域
 };
@@ -35,6 +40,7 @@ T Node<T>::Getdata()
 template <typename T> class LinkList			// 单向链表类模板设计
 {
 public:
+
 	LinkList(int n=0, const T *array=NULL);		// 构造函数（含默认的构造函数、转换构造函数等）
 	LinkList(const LinkList &list);				// (深)拷贝构造函数
 	~LinkList();								// 析构函数
@@ -69,6 +75,8 @@ public:
 
 	int Getcnt(int i);							//获取第i个种类的商品个数
 private:
+	friend void CheckSelectedRepository(LinkList<LinkList<Express>>* current, int id_store);
+	friend void CheckAllRepository(LinkList<LinkList<Express>>* first);
 	Node<T> *head, *cur_node;					// 链表首结点地址（指针）、当前结点地址（指针）
 	int num;									// 用于记录链表中结点的个数
 	unsigned short cnt[30] = { 0 };				// 用于记录链表中各个种类的商品个数

@@ -1,5 +1,6 @@
 #include "express.h"
 
+vector<Express> Express::alllist;
 ostream& operator<<(ostream& out, const Express& a)
 {
 	out << "ID:" << a.id_things << '\t' << a.name;
