@@ -36,7 +36,7 @@ void Express::SearchGlobal(LinkList<LinkList<Express>> &link, int id_things,int 
 		{
 			Node<LinkList<Express>>* p = link.Go(i);
 			LinkList<Express> q = p->Getdata();
-			allcount += SearchLocal(q, id_things);
+			allcount += SearchLocal(q, id_things, i+1);
 		}
 		cout << "所有仓库中共有" << allcount << "个." << endl;
 	}
@@ -44,7 +44,7 @@ void Express::SearchGlobal(LinkList<LinkList<Express>> &link, int id_things,int 
 	{
 		Node<LinkList<Express>>* p = link.Go(storageid-1);
 		LinkList<Express> q = p->Getdata();
-		allcount += SearchLocal(q, id_things);
+		allcount += SearchLocal(q, id_things, storageid);
 	}
 	
 }
@@ -66,7 +66,7 @@ void Express::SearchGlobal(LinkList<LinkList<Express>> &link, string name,int st
 		{
 			Node<LinkList<Express>>* p = link.Go(i);
 			LinkList<Express> q = p->Getdata();
-			allcount += SearchLocal(q, name);
+			allcount += SearchLocal(q, name, i+1);
 		}
 		cout << "所有仓库中共有" << allcount << "个." << endl;
 	}
@@ -74,10 +74,10 @@ void Express::SearchGlobal(LinkList<LinkList<Express>> &link, string name,int st
 	{
 		Node<LinkList<Express>>* p = link.Go(storageid - 1);
 		LinkList<Express> q = p->Getdata();
-		allcount += SearchLocal(q, name);
+		allcount += SearchLocal(q, name,storageid);
 	}
 }
-int Express::SearchLocal(LinkList<Express> &link, int id_things)
+int Express::SearchLocal(LinkList<Express> &link, int id_things,int storageid)
 {
 	int goodscnt = link.NumNodes();
 	for (int i = 0; i < goodscnt; i++)
@@ -86,15 +86,16 @@ int Express::SearchLocal(LinkList<Express> &link, int id_things)
 		Express q = p->Getdata();
 		if (q.id_things == id_things)
 		{
-			cout << "第" << i + 1 << "个库中:";
-			cout << q << '\t' << link.Getcnt(i+1) << "个" << endl;
-			return link.Getcnt(i+1); 
+			cout << "第" << storageid << "个库中:";
+			cout << q << '\t' << link.Getcnt(id_things) << "个" << endl;
+			return link.Getcnt(id_things);
 		}
 	}
+	return 0;
 }
 
 
-int Express::SearchLocal(LinkList<Express> &link, string name)
+int Express::SearchLocal(LinkList<Express> &link, string name,int storageid)
 {
 	int goodscnt = link.NumNodes();
 	for (int i = 0; i < goodscnt; i++)
@@ -103,11 +104,12 @@ int Express::SearchLocal(LinkList<Express> &link, string name)
 		Express q = p->Getdata();
 		if (q.name == name)
 		{
-			cout << "第" << i + 1 << "个库中:";
-			cout << q << '\t' << link.Getcnt(i+1) << "个" << endl;
-			return link.Getcnt(i+1);
+			cout << "第" << storageid << "个库中:";
+			cout << q << '\t' << link.Getcnt(q.id_things) << "个" << endl;
+			return link.Getcnt(q.id_things);
 		}
 	}
+	return 0;
 }
 
 
