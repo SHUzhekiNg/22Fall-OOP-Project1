@@ -9,21 +9,12 @@ const int MAX_SIZE = 30;			//货物名称和ID的最大长度
 
 void expressTest()
 {
-	LinkList<LinkList<Express>> WarehouseList;
+	LinkList<LinkList<Express>> WarehouseList;		//仓库的链表
 	Node<Express> *tmp=nullptr;
 	char id[80], name[80], str[80];
 	int choice;
 	int numW,numC;
 
-	/*
-	for (int i = 24; i >= 1; i--)		
-	{
-		string s;
-		char c = 'a';
-		Express Ex(i, const string(s = c + i - 1));
-		tmp = new Node<Express>(Ex);
-		WarehouseList.Insert(*tmp);
-	}*/
 	while (true)
 	{
 		cout << endl;
@@ -42,14 +33,14 @@ void expressTest()
 		case 1:											//入库
 			cout << "请输入入库仓库编号: ";
 			cin >> numW;
-			cin.getline(str, 80);					// 处理换行字符
+			cin.getline(str, MAX_SIZE);					// 处理换行字符
 			//入库
 			Express::Add(WarehouseList, numW, s);
 			break;
 		case 2:											//出库
 			cout << "请输入出库仓库编号: ";
 			cin >> numW;
-			cin.getline(str, 80);					// 处理换行字符
+			cin.getline(str, MAX_SIZE);					// 处理换行字符
 
 			//出库
 			Express::Delete(WarehouseList, numW, s);
@@ -62,27 +53,21 @@ void expressTest()
 		case 3:											//查询
 			cout << "请输入所要查询的仓库: (输入0以查询所有仓库)";
 			cin >> numW;
-			cin.getline(str, 80);
+			cin.getline(str, MAX_SIZE);
 			cout << "请输入所要查询货物的的ID或名称:";
 			cin >> s;
-			cin.getline(str, 80);					// 处理换行字符
+			cin.getline(str, MAX_SIZE);					// 处理换行字符
 			if (s[0] >= '0' && s[0] <= '9')
 			{
 				numC = stoi(s);
 				Express::SearchGlobal(WarehouseList, numC, numW);
 			}
 			else Express::SearchGlobal(WarehouseList, s, numW);
-			/*
-			WarehouseList.GoTop();
-			WarehouseList.Skip(numW - 1);
-			Ex1.SearchLocal((WarehouseList.CurNode())->Getdata(), numC);
-			break;
-			*/
 			break;
 		case 4:											//盘点
 			cout << "请输入所要盘点的仓库: (输入0以查询所有仓库)";
 			cin >> numW;
-			cin.getline(str, 80);
+			cin.getline(str, MAX_SIZE);
 			if (numW == 0)
 			{
 				CheckAllRepository(&WarehouseList);

@@ -1,9 +1,21 @@
 #include "express.h"
 
 vector<Express> Express::alllist;
+
+
+void SetTextColor(int bkcolor, int color)
+{
+	HANDLE hStdOut;
+	hStdOut = GetStdHandle(STD_OUTPUT_HANDLE);
+	SetConsoleTextAttribute(hStdOut, bkcolor | color);
+}
+
 ostream& operator<<(ostream& out, const Express& a)
 {
-	out << "ID:" << a.id_things << '\t' << a.name;
+	SetTextColor(0, 9);
+	out << "#";
+	SetTextColor(0, 15);
+	out << a.id_things << "\t" << a.name;
 	return out;
 }
 

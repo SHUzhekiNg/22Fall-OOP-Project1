@@ -2,6 +2,7 @@
 #include <iostream>
 #include <cstring>
 #include <vector>
+#include <windows.h>
 #include "LinkList.h"
 
 using namespace std;
@@ -26,3 +27,5 @@ private:
 	int id_things;							// ÷÷¿‡±‡∫≈
 	string name;
 };
+
+void SetTextColor(int bkcolor, int color);

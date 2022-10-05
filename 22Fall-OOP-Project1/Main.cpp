@@ -43,18 +43,15 @@ int Choice(const char *prompt, const char *options)		// 函数定义。输出提示信息pr
 
 int main()
 {
-	void test1(), test2(), test3(), AddressBookTest(), BankingTest(), expressTest();
+	void test1(), test2(), expressTest();
 	int key;
 	while(true)
 	{
 		cout << "\n\n\t单向链表类模板测试" << endl;
 		cout << "1 --- 链表对象（包括链表的链表）构造、析构、标准I/O、文件I/O" << endl;
 		cout << "2 --- 插入结点、查找/继续查找、倒置、排序、异常处理、修改(替换)数据" << endl;
-		cout << "3 --- 约瑟夫(Josephus)问题(测试当前结点定位方法，环绕处理)" << endl;
-		cout << "4 --- 通讯录类型测试" << endl;
-		cout << "5 --- 模拟存储款业务" << endl;
-		cout << "6 --- 模拟仓库管理" << endl;
-		key = Choice("\n请选择", "123456\x1b");
+		cout << "3 --- 模拟仓库管理" << endl;
+		key = Choice("\n请选择", "123\x1b");
 		cout << "\n\n";
 		if(key==27)		// '\x1b'等于27，指ESC键
 			break;
@@ -62,10 +59,7 @@ int main()
 		{
 		case '1':	test1();			break;
 		case '2':	test2();			break;
-		case '3':	test3();			break;
-		case '4':	AddressBookTest();	break;
-		case '5':	BankingTest();		break;
-		case '6':	expressTest();		break;
+		case '3':	expressTest();		break;
 		}
 	}
 	return 0;
