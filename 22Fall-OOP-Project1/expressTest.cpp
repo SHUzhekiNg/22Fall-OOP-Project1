@@ -89,10 +89,7 @@ void expressTest()
 			}
 			else
 			{
-				cout << "请输入所要查询货物的的ID:";
-				cin >> numC;
-				cin.getline(str, 80);					// 处理换行字符
-				CheckSelectedRepository(&WarehouseList, numC);
+				CheckSelectedRepository(&WarehouseList, numW);
 			}
 
 			break;

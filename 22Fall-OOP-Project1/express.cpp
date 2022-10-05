@@ -91,6 +91,7 @@ int Express::SearchLocal(LinkList<Express> &link, int id_things)
 			return link.Getcnt(i+1); 
 		}
 	}
+	return 0;
 }
 
 
@@ -108,6 +109,7 @@ int Express::SearchLocal(LinkList<Express> &link, string name)
 			return link.Getcnt(i+1);
 		}
 	}
+	return 0;
 }
 
 
