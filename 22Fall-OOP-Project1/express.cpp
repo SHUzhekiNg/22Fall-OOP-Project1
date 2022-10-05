@@ -18,9 +18,11 @@ bool Express::operator!=(Express a)
 }
 /*
 	全局查找功能，调用单个仓库查找
+	参数：link是保存仓库的链表，id_things是要查找商品的编号，storageid是要查找的仓库编号。
 */
 void Express::SearchGlobal(LinkList<LinkList<Express>> &link, int id_things,int storageid)
 {
+	int allcount = 0;
 	if (storageid == 0)
 	{
 		int allcount = 0;
@@ -42,6 +44,7 @@ void Express::SearchGlobal(LinkList<LinkList<Express>> &link, int id_things,int 
 	{
 		Node<LinkList<Express>>* p = link.Go(storageid-1);
 		LinkList<Express> q = p->Getdata();
+		allcount += SearchLocal(q, id_things);
 	}
 	
 }
@@ -84,8 +87,8 @@ int Express::SearchLocal(LinkList<Express> &link, int id_things)
 		if (q.id_things == id_things)
 		{
 			cout << "第" << i + 1 << "个库中:";
-			cout << q << '\t' << link.Getcnt(i) << "个" << endl;
-			return link.Getcnt(i); 
+			cout << q << '\t' << link.Getcnt(i+1) << "个" << endl;
+			return link.Getcnt(i+1); 
 		}
 	}
 }
@@ -101,8 +104,8 @@ int Express::SearchLocal(LinkList<Express> &link, string name)
 		if (q.name == name)
 		{
 			cout << "第" << i + 1 << "个库中:";
-			cout << q << '\t' << link.Getcnt(i) << "个" << endl;
-			return link.Getcnt(i);
+			cout << q << '\t' << link.Getcnt(i+1) << "个" << endl;
+			return link.Getcnt(i+1);
 		}
 	}
 }
