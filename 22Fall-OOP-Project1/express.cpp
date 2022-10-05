@@ -12,6 +12,10 @@ istream& operator>>(istream& in, Express& a)
 	in >> a.id_things >> a.name;
 	return in;
 }
+bool Express::operator!=(Express a)
+{
+	return this->name==a.name ? 0 : 1;
+}
 /*
 	全局查找功能，调用单个仓库查找
 */
@@ -138,6 +142,19 @@ void Express::Add(LinkList<LinkList<Express>>& link, const int& numW, string& s)
 void Express::Delete(LinkList<LinkList<Express>>& link, const int& numW, string& s) {
 	cout << "请输入商品名称: ";
 	cin >> s;
-
-	
+	int id_name = -1;
+	for (int i = 0; i < alllist.size(); i++) {
+		if (alllist[i].name == s) {
+			id_name = alllist[i].id_things;
+			break;
+		}
+	}
+	if (id_name == -1) return;
+	Express dx(id_name, s);
+	link.GoTop();
+	link.Skip(numW - 1);
+	auto& xx = link.CurNode()->Getdata();
+	Node<Express>* x = xx.Locate(dx, true);
+	xx.ModifyCnt(id_name, -1);
+	xx.DeleteCurNode();
 }
