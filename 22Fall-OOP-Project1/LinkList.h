@@ -19,7 +19,7 @@ public:
 	Node() : next(NULL) {}										// 默认的构造函数，故意不初始化data以保持data的“原生态”
 	Node(const T& t) : data(t), next(NULL) {}					// 转换构造函数
 	Node(const Node<T>& node) : data(node.data), next(NULL) {}	// 拷贝构造函数
-	T Getdata();												//获取data域
+	T& Getdata();												//获取data域
 	Node<T>& operator=(const Node<T>& node)					// 重载赋值运算符函数
 	{
 		data = node.data;				// 结点间赋值时，仅改变数据域，不改变链接方式
@@ -33,7 +33,7 @@ private:
 	Node<T>* next;						// 指针域
 };
 template <typename T>
-T Node<T>::Getdata()
+T& Node<T>::Getdata()
 {
 	return this->data;
 }
@@ -74,12 +74,13 @@ public:
 	void Reverse();								// 链表结点倒置
 
 	int Getcnt(int i);							//获取第i个种类的商品个数
+	void ModifyCnt(int id, int i);
 private:
 	friend void CheckSelectedRepository(LinkList<LinkList<Express>>* current, int id_store);
 	friend void CheckAllRepository(LinkList<LinkList<Express>>* first);
 	Node<T> *head, *cur_node;					// 链表首结点地址（指针）、当前结点地址（指针）
 	int num;									// 用于记录链表中结点的个数
-	unsigned short cnt[30] = { 0 };				// 用于记录链表中各个种类的商品个数
+	int cnt[30] = { 0 };				// 用于记录链表中各个种类的商品个数
 };
 
 /********************************************************************
@@ -116,6 +117,9 @@ LinkList<T>::~LinkList()						// 析构函数
 template <typename T>
 LinkList<T> & LinkList<T>::operator=(const LinkList &list)// (深)赋值运算符函数
 {
+	for (int i = 0; i < 30; i++) {
+		cnt[i] = list.cnt[i];
+	}
 	if(this == &list)					// 如果赋值运算表达式的右值对象与本对象为同一对象（它们的地址相同）
 		return *this;					// 则直接返回本对象（*this）
 	// 这是重载双目运算符函数时应该注意的问题。如果赋值表达式左、右两个对象为同一对象，贸然执行下面的语句将造成严重错误！
@@ -129,6 +133,7 @@ LinkList<T> & LinkList<T>::operator=(const LinkList &list)// (深)赋值运算符函数
 			temp = cur_node;			// 记录下本对象的“当前”结点
 	}
 	cur_node = temp;
+	
 	return *this;
 }
 
@@ -461,5 +466,10 @@ template <typename T>
 int LinkList<T>::Getcnt(int i)
 {
 	return this->cnt[i];
+}
+template<typename T>
+void LinkList<T>::ModifyCnt(int id, int i)
+{
+	this->cnt[id] += i;
 }
 #endif

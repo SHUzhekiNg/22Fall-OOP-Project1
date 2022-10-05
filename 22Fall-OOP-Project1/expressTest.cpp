@@ -9,7 +9,6 @@ const int MAX_SIZE = 30;			//货物名称和ID的最大长度
 
 void expressTest()
 {
-	using std::cout;
 	LinkList<LinkList<Express>> WarehouseList;
 	Node<Express> *tmp=nullptr;
 	char id[80], name[80], str[80];
@@ -37,7 +36,6 @@ void expressTest()
 		choice = getche() - '0';
 		cout << endl;
 		if (choice <= 0) break;
-		Express Ex1;
 		string s;
 		switch (choice)
 		{
@@ -45,17 +43,21 @@ void expressTest()
 			cout << "请输入入库仓库编号: ";
 			cin >> numW;
 			cin.getline(str, 80);					// 处理换行字符
-			WarehouseList.GoTop();
-			WarehouseList.Skip(numW - 1);
 			//入库
+			Express::Add(WarehouseList, numW, s);
 			break;
 		case 2:											//出库
 			cout << "请输入出库仓库编号: ";
 			cin >> numW;
 			cin.getline(str, 80);					// 处理换行字符
-			WarehouseList.GoTop();
-			WarehouseList.Skip(numW - 1);
+
 			//出库
+			Express::Delete(WarehouseList, numW, s);
+
+
+
+
+
 			break;
 		case 3:											//查询
 			cout << "请输入所要查询的仓库: (输入0以查询所有仓库)";
@@ -67,9 +69,9 @@ void expressTest()
 			if (s[0] >= '0' && s[0] <= '9')
 			{
 				numC = stoi(s);
-				Ex1.SearchGlobal(WarehouseList, numC, numW);
+				Express::SearchGlobal(WarehouseList, numC, numW);
 			}
-			else Ex1.SearchGlobal(WarehouseList, s, numW);
+			else Express::SearchGlobal(WarehouseList, s, numW);
 			/*
 			WarehouseList.GoTop();
 			WarehouseList.Skip(numW - 1);

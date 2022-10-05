@@ -26,6 +26,6 @@ void CheckAllRepository(LinkList<LinkList<Express>>* first)
 				}
 			}
 		}
-		cout << Express::alllist[i].name << num << endl;
+		cout << Express::alllist[i].name << "\t" << num << endl;
 	}
 }

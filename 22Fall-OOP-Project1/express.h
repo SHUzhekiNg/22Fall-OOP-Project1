@@ -9,13 +9,15 @@ template <typename T> class LinkList;
 template <typename T> class Node;
 class Express {
 public:
-	Express(const int& id_things = 0, const string& name = "NONAME") :id_things(id_things), name(name) {}
+	Express(int id_things = 0, string name = "NONAME") :id_things(id_things), name(name) {}
+	static void Add(LinkList<LinkList<Express>>& link, const int& storageid, string& name);
+	static void Delete(LinkList<LinkList<Express>>& link, const int& storageid, string& name);
 	friend ostream& operator<<(ostream& out, const Express& a);
 	friend istream& operator>>(istream& in, Express& a);
-	void SearchGlobal(LinkList<LinkList<Express>> &link, int id_things, int storageid);			//通过商品编号查找，storageid是0则为全库查找，其他数字则为第storageid个仓库查找
-	void SearchGlobal(LinkList<LinkList<Express>> &link, string name, int storageid);		//通过商品名称查找
-	int SearchLocal(LinkList<Express> &link, int id_things);
-	int SearchLocal(LinkList<Express> &link, string name);
+	static void SearchGlobal(LinkList<LinkList<Express>> &link, int id_things, int storageid);			//通过商品编号查找，storageid是0则为全库查找，其他数字则为第storageid个仓库查找
+	static void SearchGlobal(LinkList<LinkList<Express>> &link, string name, int storageid);		//通过商品名称查找
+	static int SearchLocal(LinkList<Express> &link, int id_things);
+	static int SearchLocal(LinkList<Express> &link, string name);
 private:
 	friend void CheckSelectedRepository(LinkList<LinkList<Express>>* current, int id_store);
 	friend void CheckAllRepository(LinkList<LinkList<Express>>* first);

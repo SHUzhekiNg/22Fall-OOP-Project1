@@ -102,3 +102,42 @@ int Express::SearchLocal(LinkList<Express> &link, string name)
 		}
 	}
 }
+
+
+void Express::Add(LinkList<LinkList<Express>>& link, const int& numW, string& s) {
+	cout << "请输入商品名称: ";
+	cin >> s;
+	
+	int id_name = -1;
+	for (int i = 0; i < alllist.size(); i++) {
+		if (alllist[i].name == s) {
+			id_name = alllist[i].id_things;
+			break;
+		}
+	}
+	if (id_name == -1) { 
+		id_name = alllist.size()+1;
+		alllist.push_back(Express(id_name, s));	
+	}
+	Express ex(id_name, s);
+	if (numW > link.NumNodes()) {
+		LinkList<Express>* a = new LinkList<Express>;
+		a->Append(ex);
+		link.Append(*a);
+		link.ModifyCnt(link.NumNodes(), 1);
+		link.CurNode()->Getdata().ModifyCnt(id_name, 1);
+	}
+	else {
+		link.GoTop();
+		link.Skip(numW - 1);
+		link.CurNode()->Getdata().Append(ex);
+		link.CurNode()->Getdata().ModifyCnt(id_name, 1);
+	}
+}
+
+void Express::Delete(LinkList<LinkList<Express>>& link, const int& numW, string& s) {
+	cout << "请输入商品名称: ";
+	cin >> s;
+
+	
+}
