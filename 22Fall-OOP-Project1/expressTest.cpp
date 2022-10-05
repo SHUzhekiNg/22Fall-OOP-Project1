@@ -41,14 +41,8 @@ void expressTest()
 			cout << "请输入出库仓库编号: ";
 			cin >> numW;
 			cin.getline(str, MAX_SIZE);					// 处理换行字符
-
 			//出库
 			Express::Delete(WarehouseList, numW, s);
-
-
-
-
-
 			break;
 		case 3:											//查询
 			cout << "请输入所要查询的仓库: (输入0以查询所有仓库)";
