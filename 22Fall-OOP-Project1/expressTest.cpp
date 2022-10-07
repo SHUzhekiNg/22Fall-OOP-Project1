@@ -6,10 +6,22 @@
 #include <string>
 
 const int MAX_SIZE = 30;			//货物名称和ID的最大长度
+const int WAREHOUSE_NUM = 24;		//仓库个数
+
+void WarehouseInitialize(LinkList<LinkList<Express>>& WarehouseList, int num)		//初始化24个仓库
+{
+	for (int i = 0; i < num; i++)
+	{
+		LinkList<Express>* a = new LinkList<Express>;
+		WarehouseList.Append(*a);
+		WarehouseList.ModifyCnt(WarehouseList.NumNodes(), 1);
+	}
+}
 
 void expressTest()
 {
 	LinkList<LinkList<Express>> WarehouseList;		//仓库的链表
+	WarehouseInitialize(WarehouseList,WAREHOUSE_NUM);	//初始化仓库
 	Node<Express> *tmp=nullptr;
 	char id[80], name[80], str[80];
 	int choice;
