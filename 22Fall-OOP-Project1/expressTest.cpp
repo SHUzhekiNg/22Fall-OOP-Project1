@@ -56,7 +56,12 @@ void expressTest()
 			cin >> numW;
 			cin.getline(str, MAX_SIZE);					// 处理换行字符
 			//出库
-			if (Express::Delete(WarehouseList, numW, s) == -1)cerr << "未找到该货物，删除失败！" << endl;	//找不到要删除的节点提示
+			if (numW >= 1 && numW <= WAREHOUSE_NUM)
+			{
+				if (Express::Delete(WarehouseList, numW, s) == -1)cerr << "未找到该货物，删除失败！" << endl;	//找不到要删除的节点提示
+			}
+			else cerr << "总共只有" << WAREHOUSE_NUM << "个仓库，出库失败！" << endl;		//仓库数目不够提示
+			
 			break;
 		case 3:											//查询
 			cout << "请输入所要查询的仓库: (输入0以查询所有仓库)";
