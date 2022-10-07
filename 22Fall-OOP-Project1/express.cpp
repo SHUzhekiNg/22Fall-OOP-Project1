@@ -156,7 +156,7 @@ void Express::Add(LinkList<LinkList<Express>>& link, const int& numW, string& s)
 	}
 }
 
-void Express::Delete(LinkList<LinkList<Express>>& link, const int& numW, string& s) {
+int Express::Delete(LinkList<LinkList<Express>>& link, const int& numW, string& s) {
 	cout << "请输入商品名称: ";
 	cin >> s;
 	int id_name = -1;
@@ -166,12 +166,14 @@ void Express::Delete(LinkList<LinkList<Express>>& link, const int& numW, string&
 			break;
 		}
 	}
-	if (id_name == -1) return;
+	if (id_name == -1) return -1;
 	Express dx(id_name, s);
 	link.GoTop();
 	link.Skip(numW - 1);
 	auto& xx = link.CurNode()->Getdata();
+	if (xx.GoTop() == nullptr) return -1;		//若当前仓库为空，删除失败
 	Node<Express>* x = xx.Locate(dx, true);
 	xx.ModifyCnt(id_name, -1);
 	xx.DeleteCurNode();
+	return 0;
 }

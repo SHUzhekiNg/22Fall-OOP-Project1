@@ -21,12 +21,13 @@ void WarehouseInitialize(LinkList<LinkList<Express>>& WarehouseList, int num)		/
 void expressTest()
 {
 	LinkList<LinkList<Express>> WarehouseList;		//仓库的链表
-	WarehouseInitialize(WarehouseList,WAREHOUSE_NUM);	//初始化仓库
 	Node<Express> *tmp=nullptr;
-	char id[80], name[80], str[80];
+	char id[MAX_SIZE], name[MAX_SIZE], str[MAX_SIZE];
 	int choice;
 	int numW,numC;
 
+
+	WarehouseInitialize(WarehouseList, WAREHOUSE_NUM);	//初始化仓库
 	while (true)
 	{
 		cout << endl;
@@ -47,14 +48,15 @@ void expressTest()
 			cin >> numW;
 			cin.getline(str, MAX_SIZE);					// 处理换行字符
 			//入库
-			Express::Add(WarehouseList, numW, s);
+			if (numW >= 1 && numW <= WAREHOUSE_NUM) Express::Add(WarehouseList, numW, s);
+			else cerr << "总共只有" << WAREHOUSE_NUM << "个仓库，入库失败！" << endl;		//仓库数目不够提示
 			break;
 		case 2:											//出库
 			cout << "请输入出库仓库编号: ";
 			cin >> numW;
 			cin.getline(str, MAX_SIZE);					// 处理换行字符
 			//出库
-			Express::Delete(WarehouseList, numW, s);
+			if (Express::Delete(WarehouseList, numW, s) == -1)cerr << "未找到该货物，删除失败！" << endl;	//找不到要删除的节点提示
 			break;
 		case 3:											//查询
 			cout << "请输入所要查询的仓库: (输入0以查询所有仓库)";
